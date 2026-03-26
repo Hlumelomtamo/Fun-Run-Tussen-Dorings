@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun Run 2025 | Tussen Dorings Event</title>
+  <meta name="description" content="Join the Tussen Dorings Fun Run 2025 in Worcester. Run for hope. Register now and be part of the movement." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="event.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* Banner watermark on branded sections */
+    .branded-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .branded-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('pictures/PHOTO-2025-09-26-07-35-55.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .branded-section > * { position: relative; z-index: 1; }
+    /* Slightly stronger on dark sections */
+    .branded-section-dark::before { opacity: 0.09; }
+  </style>
+</head>
+<body>
+
+<!-- ======= NAVIGATION ======= -->
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-main">Tussen Dorings</span>
+        <span class="nav__logo-sub">Hope Among the Thorns</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#stories">Stories</a></li>
+        <li><a href="#event-details">Event Details</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#register" class="btn btn-primary" style="padding:0.55rem 1.3rem; font-size:0.8rem;">Register Now</a></li>
+      </ul>
+      <div class="nav__social">
+        <a href="https://www.facebook.com/TussenDorings" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.youtube.com/@tussendorings2924" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="nav__hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <div class="nav__mobile" id="mobileNav" style="display:none; flex-direction:column; background:var(--white); padding:1.5rem 2rem; border-top:1px solid var(--sand); gap:1rem;">
+    <a href="index.html" style="font-family:var(--font-ui);font-size:0.9rem;font-weight:500;color:var(--earth);letter-spacing:0.06em;text-transform:uppercase;padding:0.5rem 0;border-bottom:1px solid var(--sand);">Home</a>
+    <a href="#event-details" style="font-family:var(--font-ui);font-size:0.9rem;font-weight:500;color:var(--earth);letter-spacing:0.06em;text-transform:uppercase;padding:0.5rem 0;border-bottom:1px solid var(--sand);">Event Details</a>
+    <a href="#schedule" style="font-family:var(--font-ui);font-size:0.9rem;font-weight:500;color:var(--earth);letter-spacing:0.06em;text-transform:uppercase;padding:0.5rem 0;border-bottom:1px solid var(--sand);">Schedule</a>
+    <a href="#register" style="font-family:var(--font-ui);font-size:0.9rem;font-weight:500;color:var(--earth);letter-spacing:0.06em;text-transform:uppercase;padding:0.5rem 0;">Register</a>
+  </div>
+</nav>
+
+<!-- ======= EVENT HERO ======= -->
+<section class="event-hero" id="event-details">
+  <div class="container">
+    <div class="hero__bg" style="background-image: url('pictures/PHOTO-2025-09-26-07-35-55.jpg');"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__texture"></div>
+    <div class="event-hero__content">
+      <div class="event-hero__tag"><i class="fas fa-running"></i> Worcester, Western Cape</div>
+      <h1>Tussen Dorings<br><span class="highlight">Fun Run 2026</span></h1>
+      <p style="color:rgba(255,253,248,0.78); font-style:italic; font-size:1.1rem; max-width:560px; margin-top:0.5rem;">
+        Every stride is a story. Every kilometre, a step towards hope. Run with us — for yourself, for your community, for those still finding their way through the thorns.
+      </p>
+      <div class="event-hero__meta">
+        <div class="event-hero__meta-item">
+          <i class="fas fa-calendar"></i>
+          <!-- ✏️ EDIT: Replace with your event date -->
+          <span><strong>Date TBA</strong> — TBA soon</span>
+        </div>
+        <div class="event-hero__meta-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <!-- ✏️ EDIT: Replace with your event location -->
+          <span><strong>Worcester CBD</strong> — Location TBA</span>
+        </div>
+        <div class="event-hero__meta-item">
+          <i class="fas fa-road"></i>
+          <!-- ✏️ EDIT: Replace with distance -->
+          <span><strong>5km / 10km</strong> Route</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= COUNTDOWN TIMER ======= -->
+<section class="countdown-section">
+  <div class="container">
+    <div class="countdown-inner">
+      <div class="countdown-label-text">
+        ⏱ Time left to register
+      </div>
+      <div class="countdown-timer" id="countdown">
+        <div class="countdown-unit">
+          <span class="countdown-unit__number" id="cd-days">--</span>
+          <span class="countdown-unit__label">Days</span>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-unit__number" id="cd-hours">--</span>
+          <span class="countdown-unit__label">Hours</span>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-unit__number" id="cd-mins">--</span>
+          <span class="countdown-unit__label">Minutes</span>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit">
+          <span class="countdown-unit__number" id="cd-secs">--</span>
+          <span class="countdown-unit__label">Seconds</span>
+        </div>
+      </div>
+      <div class="countdown-cta">
+        <a href="#register" class="btn" style="background:var(--white); color:var(--terracotta); border-color:var(--white); font-size:0.88rem;">
+          <i class="fas fa-arrow-down"></i> Secure Your Spot
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= WHY IT MATTERS ======= -->
+<section class="why-matters branded-section" id="why">
+  <div class="container">
+    <div class="why-matters__grid">
+      <div class="why-matters__visual reveal">
+        <img src="pictures/photo8.jpg" alt="Running for hope in Worcester" class="why-matters__img" />
+        <div class="why-matters__badge">
+          <div class="why-matters__badge-num">100%</div>
+          <div class="why-matters__badge-text">Goes to<br>Community</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="section-label">Why It Matters</span>
+        <div class="thorn-accent"></div>
+        <h2>This run is bigger than a race</h2>
+        <p style="margin-top:1rem; color:var(--warm-grey);">
+          The Tussen Dorings Fun Run isn't just about fitness — it's a declaration that our community stands together. Every rand raised funds our outreach, our stories, and our ability to say to one more person: <em>you are not alone.</em>
+        </p>
+        <div class="why-matters__points">
+          <div class="why-point">
+            <div class="why-point__icon"><i class="fas fa-heart"></i></div>
+            <div class="why-point__text">
+              <h4>Fund Weekly Stories</h4>
+              <p>Your registration helps us find, film, and share more stories of hope every single week.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point__icon"><i class="fas fa-users"></i></div>
+            <div class="why-point__text">
+              <h4>Strengthen Community</h4>
+              <p>Running together builds bonds. The Western Cape deserves spaces where people feel seen and heard.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <div class="why-point__icon"><i class="fas fa-seedling"></i></div>
+            <div class="why-point__text">
+              <h4>Plant Seeds of Hope</h4>
+              <p>One event, one run, one story at a time — we are changing the narrative of despair in our communities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= EVENT MISSION ======= -->
+<section style="background:var(--forest); padding:4rem 0;" id="mission">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;" class="reveal">
+      <div>
+        <span style="font-family:var(--font-ui);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;display:block;">Event Mission</span>
+        <h2 style="color:var(--sand);">Run with Purpose</h2>
+        <p style="color:rgba(255,253,248,0.72); margin-top:1rem;">
+          The Tussen Dorings Fun Run was created to be a living celebration of the human spirit. Whether you walk, jog, or run — your presence is a powerful statement that hope is not dead in our streets.
+        </p>
+        <p style="color:rgba(255,253,248,0.72); margin-top:1rem;">
+          All proceeds directly support Tussen Dorings' community outreach work in and around Worcester, Western Cape.
+        </p>
+      </div>
+      <div style="background:rgba(255,255,255,0.05); border-radius:var(--radius-md); padding:2rem; border:1px solid rgba(255,255,255,0.1);">
+        <h4 style="color:var(--gold); font-family:var(--font-ui); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:1.5rem;">Event Details at a Glance</h4>
+        <ul style="display:flex; flex-direction:column; gap:1rem;">
+          <li style="display:flex; gap:1rem; align-items:flex-start; color:rgba(255,253,248,0.75); font-family:var(--font-ui); font-size:0.9rem;">
+            <i class="fas fa-calendar" style="color:var(--terracotta); margin-top:3px; flex-shrink:0;"></i>
+            <!-- ✏️ EDIT date -->
+            <span><strong style="color:var(--white);">Date:</strong> To Be Announced — edit this in event.html</span>
+          </li>
+          <li style="display:flex; gap:1rem; align-items:flex-start; color:rgba(255,253,248,0.75); font-family:var(--font-ui); font-size:0.9rem;">
+            <i class="fas fa-map-marker-alt" style="color:var(--terracotta); margin-top:3px; flex-shrink:0;"></i>
+            <!-- ✏️ EDIT location -->
+            <span><strong style="color:var(--white);">Location:</strong> Worcester, Western Cape — exact venue TBA</span>
+          </li>
+          <li style="display:flex; gap:1rem; align-items:flex-start; color:rgba(255,253,248,0.75); font-family:var(--font-ui); font-size:0.9rem;">
+            <i class="fas fa-road" style="color:var(--terracotta); margin-top:3px; flex-shrink:0;"></i>
+            <!-- ✏️ EDIT distances -->
+            <span><strong style="color:var(--white);">Distances:</strong> 5km Family Run · 10km Challenge</span>
+          </li>
+          <li style="display:flex; gap:1rem; align-items:flex-start; color:rgba(255,253,248,0.75); font-family:var(--font-ui); font-size:0.9rem;">
+            <i class="fas fa-ticket-alt" style="color:var(--terracotta); margin-top:3px; flex-shrink:0;"></i>
+            <!-- ✏️ EDIT entry fee -->
+            <span><strong style="color:var(--white);">Entry Fee:</strong> R150 per person (confirm fee before event)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <style>@media (max-width:768px){ .mission-grid { grid-template-columns:1fr !important; } }</style>
+  </div>
+</section>
+
+<!-- ======= SCHEDULE ======= -->
+<section class="schedule-section branded-section" id="schedule">
+  <div class="container">
+    <div style="max-width:700px; margin:0 auto;">
+      <div class="reveal">
+        <span class="section-label">Event Schedule</span>
+        <div class="thorn-accent"></div>
+        <h2>Day of the Run</h2>
+        <p style="color:var(--warm-grey); margin-top:0.8rem; margin-bottom:3rem;">
+          <!-- ✏️ EDIT: Update times and activities as event details are confirmed -->
+          Times are indicative and will be confirmed closer to the event. Follow our Facebook page for updates.
+        </p>
+      </div>
+      <div class="timeline reveal">
+        <!-- ✏️ EDIT: All timeline items below -->
+        <div class="timeline-item">
+          <div class="timeline-item__time">06:30 — Registration Opens</div>
+          <h4>Arrivals & Check-In</h4>
+          <p>Collect your race number and welcome pack at the registration table. Early birds get the best parking!</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item__time">07:00 — Warm-Up</div>
+          <h4>Community Warm-Up</h4>
+          <p>Group warm-up session for all participants. Let's get those legs ready and spirits high.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item__time">07:30 — Start Gun</div>
+          <h4>Fun Run Begins 🏁</h4>
+          <p>The 10km runners set off first, followed by the 5km family group. Cheering encouraged!</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item__time">09:00 — Finish Line</div>
+          <h4>Celebrations & Awards</h4>
+          <p>Finisher medals for all. Light refreshments provided. Top finishers receive special recognition.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item__time">10:00 — Community Gathering</div>
+          <h4>Stories & Fellowship</h4>
+          <p>A short programme featuring live testimony and the spirit of Tussen Dorings in action.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item__time">11:00 — Event Closes</div>
+          <h4>Until Next Time</h4>
+          <p>Thank you for running with hope. Stay connected on Facebook and YouTube.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= LOCATION ======= -->
+<section style="background:var(--white); padding:4rem 0;" id="location">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:2rem;" class="reveal">
+      <span class="section-label">Location</span>
+      <h2>Where to Find Us</h2>
+      <p style="color:var(--warm-grey); margin-top:0.6rem;">
+        <!-- ✏️ EDIT: Update address when confirmed -->
+        Worcester, Western Cape, South Africa — Exact venue to be announced. Follow us on Facebook for updates.
+      </p>
+    </div>
+    <!-- ✏️ EDIT: Replace src with an actual Google Maps embed for your event venue -->
+    <div style="border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-card);" class="reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.64!2d19.4458!3d-33.6465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dce4eb1e39d0001%3A0x8cf2ff0e44a4b77c!2sWorcester%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1699999999999"
+        width="100%"
+        height="380"
+        style="border:0; display:block;"
+        allowfullscreen=""
+        loading="lazy"
+        title="Event Location — Worcester, Western Cape"
+      ></iframe>
+    </div>
+    <p style="text-align:center; margin-top:1rem; font-family:var(--font-ui); font-size:0.82rem; color:var(--warm-grey);">
+      💡 Replace the Google Maps embed URL with your specific venue coordinates when confirmed.
+    </p>
+  </div>
+</section>
+
+<!-- ======= REGISTRATION ======= -->
+<section class="registration-section branded-section" id="register">
+  <div class="container">
+    <div class="registration-wrapper">
+      <div class="registration-info reveal">
+        <span class="section-label">Register</span>
+        <div class="thorn-accent"></div>
+        <h2>Secure Your Spot Today</h2>
+        <p>Spaces are limited. Register now to guarantee your place in the Tussen Dorings Fun Run 2025 and run your own story of hope.</p>
+        <div class="reg-info-list" style="margin-top:2rem;">
+          <div class="reg-info-item">Finisher medal for every participant</div>
+          <div class="reg-info-item">Light refreshments at the finish line</div>
+          <div class="reg-info-item">Official Tussen Dorings event certificate</div>
+          <div class="reg-info-item">All proceeds support community outreach</div>
+          <div class="reg-info-item">Safe, family-friendly route in Worcester</div>
+        </div>
+        <div style="margin-top:2.5rem; padding:1.5rem; background:rgba(201,146,42,0.1); border:1px solid rgba(201,146,42,0.25); border-radius:var(--radius-md);">
+          <div style="font-family:var(--font-ui); font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem;">Entry Fee</div>
+          <!-- ✏️ EDIT: Update entry fee -->
+          <div style="font-family:var(--font-display); font-size:2.4rem; font-weight:900; color:var(--charcoal); line-height:1;">R150</div>
+          <div style="font-family:var(--font-ui); font-size:0.85rem; color:var(--warm-grey); margin-top:0.3rem;">Per participant · Confirm before event</div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="reg-form-card">
+          <h3>Register for the Fun Run</h3>
+          <p class="form-subtitle">Fill in your details below. Registration is confirmed upon payment.</p>
+          
+          <form id="registrationForm" novalidate>
+            <!-- Participant Name -->
+            <div class="form-group">
+              <label for="firstName">First Name <span class="req">*</span></label>
+              <input type="text" id="firstName" name="firstName" placeholder="Your first name" required autocomplete="given-name" />
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name <span class="req">*</span></label>
+              <input type="text" id="lastName" name="lastName" placeholder="Your last name" required autocomplete="family-name" />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email" />
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+27 XX XXX XXXX" autocomplete="tel" />
+            </div>
+
+            <!-- Race Distance -->
+            <div class="form-group">
+              <label for="distance">Race Category <span class="req">*</span></label>
+              <select id="distance" name="distance" required>
+                <option value="" disabled selected>Select your distance</option>
+                <option value="5km">5km — Family Fun Run</option>
+                <option value="10km">10km — Challenge Run</option>
+              </select>
+            </div>
+
+            <!-- T-Shirt Size -->
+            <div class="form-group">
+              <label for="tshirt">T-Shirt Size</label>
+              <select id="tshirt" name="tshirt">
+                <option value="" disabled selected>Select size</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select>
+            </div>
+
+            <!-- Emergency Contact -->
+            <div class="form-group">
+              <label for="emergency">Emergency Contact Name &amp; Number</label>
+              <input type="text" id="emergency" name="emergency" placeholder="Name — 082 XXX XXXX" />
+            </div>
+
+            <!-- Medical Note -->
+            <div class="form-group">
+              <label for="medical">Any Medical Conditions We Should Know About?</label>
+              <input type="text" id="medical" name="medical" placeholder="e.g. asthma, diabetes — or leave blank if none" />
+            </div>
+
+            <!-- Consent Checkbox -->
+            <div class="form-consent">
+              <label>
+                <input type="checkbox" id="consent" name="consent" required />
+                <span>
+                  I have read and agree to the <a href="#privacy">Privacy Policy</a> and <a href="#terms">Terms of Use</a>. I understand my personal data will be collected solely for event registration purposes in compliance with South Africa's <a href="#popia">POPIA Act</a>. I will not share my data with third parties without my consent.
+                </span>
+              </label>
+            </div>
+
+            <div class="form-consent" style="margin-top:0.8rem;">
+              <label>
+                <input type="checkbox" id="refundConsent" name="refundConsent" required />
+                <span>
+                  I have read and understood the <a href="#refund">Refund Policy</a>. I understand registration fees are non-refundable within 7 days of the event, and partially refundable (50%) if cancelled 14+ days prior.
+                </span>
+              </label>
+            </div>
+
+            <!-- Pay Now Button -->
+            <div class="pay-now-section" style="margin-top:1.5rem;">
+              <button type="submit" class="btn-pay" id="payBtn">
+                <i class="fas fa-lock"></i>
+                Pay Now — R150 per Person
+              </button>
+              <div class="payment-badges">
+                <span class="payment-badge">Secure SSL Encryption</span>
+                <span class="payment-separator">·</span>
+                <span class="payment-badge">Safe Payment</span>
+                <span class="payment-separator">·</span>
+                <span class="payment-badge">Data Protected</span>
+              </div>
+              <!-- ✏️ PAYMENT GATEWAY NOTE: 
+                   Connect your payment provider below.
+                   South African options: PayFast, Peach Payments, Yoco, PayGate.
+                   Replace the form submission handler in the <script> below
+                   with your provider's SDK or redirect URL.
+              -->
+              <p style="text-align:center; margin-top:1rem; font-size:0.78rem; font-family:var(--font-ui); color:var(--warm-grey);">
+                💳 Payments processed securely. Currently configured for
+                <strong>PayFast / manual EFT</strong> — connect your gateway in the script below.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= LEGAL SECTION ======= -->
+<section class="legal-section" id="legal">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3rem;" class="reveal">
+      <span class="section-label">Legal &amp; Trust</span>
+      <h2>Your Trust Matters to Us</h2>
+      <p style="color:var(--warm-grey); max-width:560px; margin:0.8rem auto 0;">
+        Tussen Dorings is committed to the responsible, ethical collection and use of personal information in accordance with South African law.
+      </p>
+    </div>
+    <div class="legal-grid">
+      <!-- Privacy Policy -->
+      <div class="legal-card reveal" id="privacy">
+        <div class="legal-card__icon">🔒</div>
+        <h4>Privacy Policy</h4>
+        <p>
+          We collect your name, email address, phone number, and health information <em>solely for the purpose of event registration and participant safety</em>. Your data is never sold or shared with third parties for marketing. Data is stored securely and deleted within 12 months after the event. You have the right to access, correct, or request deletion of your information at any time by contacting us on Facebook.
+        </p>
+      </div>
+      <!-- POPIA Compliance -->
+      <div class="legal-card reveal" id="popia">
+        <div class="legal-card__icon">🇿🇦</div>
+        <h4>POPIA Compliance</h4>
+        <p>
+          Tussen Dorings complies fully with South Africa's <strong>Protection of Personal Information Act (POPIA), No. 4 of 2013</strong>. We process personal information lawfully, with your explicit consent, and only for the specific purpose of event registration. As a data subject, you have the right to be notified of data processing, to access your information, and to raise an objection with the Information Regulator of South Africa.
+        </p>
+      </div>
+      <!-- Refund Policy -->
+      <div class="legal-card reveal" id="refund">
+        <div class="legal-card__icon">↩️</div>
+        <h4>Refund Policy</h4>
+        <p>
+          We want to be straightforward and fair. Here's our policy:<br/><br/>
+          <strong>More than 14 days before the event:</strong> 50% refund issued.<br/>
+          <strong>7–14 days before the event:</strong> No cash refund, but your registration can be transferred to another participant — contact us on Facebook to arrange.<br/>
+          <strong>Within 7 days of the event:</strong> No refund. Registration is non-transferable.<br/>
+          <strong>Event cancellation by Tussen Dorings:</strong> Full refund issued within 14 business days.<br/><br/>
+          To request a refund, message us on Facebook with your registration name and email.
+        </p>
+      </div>
+    </div>
+
+    <!-- Terms of Use -->
+    <div style="background:var(--cream); border-radius:var(--radius-md); padding:2rem 2.5rem; margin-top:2rem; border:1px solid rgba(123,94,58,0.1);" class="reveal" id="terms">
+      <h4 style="margin-bottom:1rem;">Terms of Use &amp; Participation Waiver</h4>
+      <p style="font-size:0.88rem; color:var(--warm-grey); line-height:1.9;">
+        By registering for the Tussen Dorings Fun Run, participants acknowledge and agree to the following:
+        (1) Participation is voluntary and at the participant's own risk. Tussen Dorings NPO cannot be held liable for any injury, illness, or loss during the event.
+        (2) Participants confirm they are medically fit to participate and will inform the organisers of any relevant medical conditions prior to the event.
+        (3) Participants grant Tussen Dorings the right to use photographs or videos taken at the event for non-commercial promotional purposes (social media, website, print). You may opt out by notifying us in writing before the event.
+        (4) Participants must abide by the rules of the event and show respect to all volunteers, organisers, and fellow participants.
+        (5) Children under 16 must be accompanied by a registered adult participant.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= SUCCESS MODAL ======= -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal" style="position:relative;">
+    <button class="modal__close" onclick="closeModal()">✕</button>
+    <div class="modal__icon">🎉</div>
+    <h3>You're Registered!</h3>
+    <p>Thank you for signing up for the Tussen Dorings Fun Run 2025. A confirmation email is on its way. We'll see you at the finish line!</p>
+    <a href="index.html" class="btn btn-primary" style="display:inline-flex;">Back to Home</a>
+  </div>
+</div>
+
+<!-- ======= FOOTER ======= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">Tussen Dorings</div>
+        <p class="footer__tagline">"We are here to give hope and to make you realise that we all have thorns in our paths."</p>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/TussenDorings" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.youtube.com/@tussendorings2924" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <h5>Event</h5>
+        <ul>
+          <li><a href="#event-details">Event Details</a></li>
+          <li><a href="#why">Why It Matters</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#register">Register</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#refund">Refund Policy</a></li>
+          <li><a href="#terms">Terms of Use</a></li>
+          <li><a href="#popia">POPIA</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li style="color:rgba(255,253,248,0.55); font-family:var(--font-ui); font-size:0.88rem; margin-bottom:0.5rem;">
+            <i class="fas fa-map-marker-alt" style="color:var(--terracotta); margin-right:0.4rem;"></i>
+            Worcester, Western Cape, South Africa
+          </li>
+          <li><a href="https://www.facebook.com/TussenDorings" target="_blank">Facebook: Tussen Dorings</a></li>
+          <li><a href="https://www.youtube.com/@tussendorings2924" target="_blank">YouTube: @tussendorings2924</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Tussen Dorings NPO · Worcester, Western Cape, South Africa</span>
+      <span>
+        <a href="#privacy">Privacy Policy</a> ·
+        <a href="#refund">Refund Policy</a> ·
+        <a href="#popia">POPIA</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ======= SCRIPTS ======= -->
+<script>
+  // ── Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Nav
+  function toggleNav() {
+    const m = document.getElementById('mobileNav');
+    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+  }
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(28,26,23,0.12)' : 'none';
+  });
+
+  // ── COUNTDOWN TIMER
+  // ✏️ EDIT: Set your event date here (YYYY, MM-1, DD, HH, MM, SS)
+  // Example: new Date(2025, 10, 15, 7, 0, 0) = 15 November 2025 at 07:00
+  const eventDate = new Date(2026, 10, 15, 7, 0, 0); // ← CHANGE THIS
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<div style="color:var(--white); font-family:var(--font-display); font-size:1.8rem; font-weight:700;">🏁 The event is live!</div>';
+      return;
+    }
+
+    const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    const pad = n => String(n).padStart(2, '0');
+    const update = (id, val) => {
+      const el = document.getElementById(id);
+      const newVal = pad(val);
+      if (el.textContent !== newVal) {
+        el.textContent = newVal;
+        el.classList.add('flip');
+        setTimeout(() => el.classList.remove('flip'), 300);
+      }
+    };
+
+    update('cd-days',  days);
+    update('cd-hours', hours);
+    update('cd-mins',  minutes);
+    update('cd-secs',  seconds);
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── FORM SUBMISSION
+  document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const firstName   = document.getElementById('firstName').value.trim();
+    const lastName    = document.getElementById('lastName').value.trim();
+    const email       = document.getElementById('email').value.trim();
+    const distance    = document.getElementById('distance').value;
+    const consent     = document.getElementById('consent').checked;
+    const refundConsent = document.getElementById('refundConsent').checked;
+
+    // Validation
+    if (!firstName || !lastName || !email || !distance) {
+      alert('Please fill in all required fields (marked with *).');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    if (!consent || !refundConsent) {
+      alert('Please agree to both the Privacy Policy/Terms and the Refund Policy to proceed.');
+      return;
+    }
+
+    // ── PAYMENT GATEWAY INTEGRATION POINT ──
+    // Replace this section with your payment provider:
+    //
+    // Option A — PayFast (recommended for South Africa):
+    //   Redirect to: https://www.payfast.co.za/eng/process
+    //   Pass merchant_id, merchant_key, amount, item_name, name_first, email_address
+    //
+    // Option B — Peach Payments:
+    //   Use their JS SDK after form validation
+    //
+    // Option C — Yoco:
+    //   Use Yoco's embedded SDK for card payments
+    //
+    // Option D — Manual EFT:
+    //   Show banking details and send confirmation email via EmailJS or Formspree
+    //
+    // ─────────────────────────────────────────
+
+    // DEMO: Show success modal (replace with actual payment redirect)
+    const payBtn = document.getElementById('payBtn');
+    payBtn.disabled = true;
+    payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+    setTimeout(() => {
+      // ✏️ REPLACE setTimeout block with actual payment gateway call
+      document.getElementById('successModal').classList.add('open');
+      payBtn.disabled = false;
+      payBtn.innerHTML = '<i class="fas fa-lock"></i> Pay Now — R150 per Person';
+    }, 2000);
+  });
+
+  function closeModal() {
+    document.getElementById('successModal').classList.remove('open');
+  }
+  // Close modal on overlay click
+  document.getElementById('successModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+</body>
+</html>

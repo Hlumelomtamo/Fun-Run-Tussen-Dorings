@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tussen Dorings | Hope Among the Thorns</title>
+  <meta name="description" content="Tussen Dorings is a non-profit organisation based in Worcester, Western Cape, dedicated to motivating people through real stories of resilience and hope." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* Homepage-only extras */
+    .about-section {
+      background: var(--cream);
+      padding: 6rem 0;
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-stack {
+      position: relative;
+      height: 520px;
+    }
+    .about-img-main {
+      width: 75%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-float);
+      position: absolute;
+      top: 0; left: 0;
+    }
+    .about-img-secondary {
+      width: 58%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-float);
+      position: absolute;
+      bottom: 0; right: 0;
+      border: 4px solid var(--white);
+    }
+    .about-img-badge {
+      position: absolute;
+      top: 50%; left: 60%;
+      transform: translateY(-50%);
+      background: var(--gold);
+      color: var(--white);
+      padding: 1.2rem;
+      border-radius: 50%;
+      width: 80px; height: 80px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.3;
+      box-shadow: var(--shadow-card);
+      z-index: 3;
+    }
+    @media (max-width: 768px) {
+      .about-inner { grid-template-columns: 1fr; }
+      .about-img-stack { height: 320px; }
+      .about-img-main { width: 80%; height: 280px; }
+      .about-img-secondary { width: 55%; height: 200px; }
+    }
+
+    .values-section {
+      background: var(--sand);
+      padding: 5rem 0;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .value-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 2.2rem;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+    }
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-card);
+    }
+    .value-card__icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .value-card h4 { margin-bottom: 0.6rem; }
+    .value-card p { font-size: 0.9rem; color: var(--warm-grey); }
+    @media (max-width: 768px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+
+    .cta-band {
+      background: var(--terracotta);
+      padding: 4rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: 'HOOP';
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 16rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.05);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      letter-spacing: 0.3em;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .cta-band h2 { color: var(--white); margin-bottom: 1rem; }
+    .cta-band p { color: rgba(255,253,248,0.8); margin-bottom: 2rem; font-style: italic; font-size: 1.1rem; }
+
+    /* Mobile nav menu */
+    .nav__mobile {
+      display: none;
+      flex-direction: column;
+      background: var(--white);
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--sand);
+      gap: 1rem;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--earth);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    /* ── Banner watermark on branded sections ── */
+    .branded-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .branded-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/banner.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .branded-section > * { position: relative; z-index: 1; }
+
+    /* ── YouTube Videos Section ── */
+    .videos-section {
+      background: var(--white);
+    }
+    .videos-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .videos-header .eyebrow {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 900px) { .videos-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .videos-grid { grid-template-columns: 1fr; } }
+
+    .video-card {
+      background: var(--cream);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition);
+      border: 1px solid rgba(123,94,58,0.09);
+    }
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-float);
+    }
+    .video-card__embed {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 ratio */
+      background: var(--charcoal);
+    }
+    .video-card__embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .video-card__body {
+      padding: 1.3rem 1.6rem 1.6rem;
+    }
+    .video-card__label {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .video-card__label i { font-size: 0.75rem; }
+    .video-card__title {
+      font-size: 1.05rem;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+    .video-card__desc {
+      font-size: 0.88rem;
+      color: var(--warm-grey);
+    }
+
+    /* ── How to add images helper box ── */
+    .img-guide {
+      background: linear-gradient(135deg, rgba(46,84,54,0.06), rgba(201,146,42,0.06));
+      border: 1.5px dashed rgba(123,94,58,0.28);
+      border-radius: var(--radius-md);
+      padding: 1.6rem 2rem;
+      margin-top: 0.8rem;
+    }
+    .img-guide__title {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--forest);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .img-guide ol {
+      list-style: decimal;
+      padding-left: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .img-guide ol li {
+      font-family: var(--font-ui);
+      font-size: 0.86rem;
+      color: var(--earth);
+      line-height: 1.6;
+    }
+    .img-guide ol li code {
+      background: rgba(28,26,23,0.08);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      color: var(--terracotta);
+    }
+    .img-guide ol li strong { color: var(--charcoal); }
+  </style>
+</head>
+<body>
+
+<!-- ======= NAVIGATION ======= -->
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-main">Tussen Dorings</span>
+        <span class="nav__logo-sub">Hope Among the Thorns</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="event.html">Events</a></li>
+        <li><a href="#podcast">Podcast</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="event.html#register" class="btn btn-primary" style="padding:0.55rem 1.3rem; font-size:0.8rem;">Register Now</a></li>
+      </ul>
+      <div class="nav__social">
+        <a href="https://www.facebook.com/TussenDorings" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.youtube.com/@tussendorings2924" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="nav__hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <div class="nav__mobile" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="#videos">Videos</a>
+    <a href="event.html">Events</a>
+    <a href="#podcast">Podcast</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <div class="hero__bg" style="background-image: url('pictures/PHOTO-2025-09-26-07-35-55.jpg');"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__texture"></div>
+  <div class="container">
+    <div class="hero__content">
+      <div class="hero__eyebrow">Worcester, Western Cape</div>
+      <h1>We are here to give <em>hope</em></h1>
+      <p class="hero__slogan">
+        "We are here to give hope and to make you realise that we all have thorns in our paths."
+      </p>
+      <div class="hero__cta">
+        <a href="#videos" class="btn btn-primary">Watch Our Videos</a>
+        <a href="event.html" class="btn btn-secondary" style="border-color:rgba(255,253,248,0.4); color:var(--white);">Upcoming Events</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <div class="hero__scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ======= MISSION STRIP ======= -->
+<section class="mission-strip branded-section">
+  <div class="container">
+    <div class="mission-strip__inner">
+      <div>
+        <h2>Our Mission</h2>
+        <p>
+          Tussen Dorings exists to uplift communities in the Western Cape and beyond — sharing stories of ordinary people who faced extraordinary challenges and chose hope over despair. Every thorn in your path is also proof you are still walking.
+        </p>
+      </div>
+      <div class="mission-strip__divider"></div>
+      <div style="display:flex; gap:3rem; justify-content:center; flex-wrap:wrap;">
+        <div class="mission-strip__stat">
+          <div class="mission-strip__stat-number">100+</div>
+          <div class="mission-strip__stat-label">Stories Shared</div>
+        </div>
+        <div class="mission-strip__stat">
+          <div class="mission-strip__stat-number">5K+</div>
+          <div class="mission-strip__stat-label">Lives Touched</div>
+        </div>
+        <div class="mission-strip__stat">
+          <div class="mission-strip__stat-number">1</div>
+          <div class="mission-strip__stat-label">Community of Hope</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= YOUTUBE VIDEOS ======= -->
+<section class="videos-section section branded-section" id="videos">
+  <div class="container">
+    <div class="videos-header reveal">
+      <span class="eyebrow"><i class="fab fa-youtube"></i> &nbsp;Latest from YouTube</span>
+      <h2>Watch Our Stories of Hope</h2>
+      <p class="lead" style="margin-top:0.8rem; max-width:580px; margin-left:auto; margin-right:auto;">
+        Real voices. Real thorns. Real hope — every week on YouTube.
+      </p>
+    </div>
+
+    <div class="videos-grid">
+
+      <article class="video-card reveal">
+        <div class="video-card__embed">
+          <iframe
+            src="https://www.youtube.com/embed/3ZT55kAYIGM"
+            title="Tussen Dorings Video 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="video-card__body">
+          <div class="video-card__label"><i class="fab fa-youtube"></i> Latest Video</div>
+          <h3 class="video-card__title">Onderhoud me Mahmud Fredericks.</h3>
+          <p class="video-card__desc">Ons is hier om hoop te gee en jou te laat besef ons almal het verskillende Dorings op ons pad.</p>
+        </div>
+      </article>
+
+      <!-- ✏️ VIDEO 2 — Replace VIDEO_ID_2 -->
+      <article class="video-card reveal">
+        <div class="video-card__embed">
+          <iframe
+            src="https://www.youtube.com/embed/tih2UImkGy8"
+            title="Tussen Dorings Video 2"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="video-card__body">
+          <div class="video-card__label"><i class="fab fa-youtube"></i> Community Voice</div>
+          <h3 class="video-card__title">Padkos vir die week.</h3>
+          <p class="video-card__desc">Kom ons luister na die storie.</p>
+        </div>
+      </article>
+
+      <!-- ✏️ VIDEO 3 — Replace VIDEO_ID_3 -->
+      <article class="video-card reveal">
+        <div class="video-card__embed">
+          <iframe
+            src="https://www.youtube.com/embed/xtF51EP9ckM"
+            title="Tussen Dorings Video 3"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="video-card__body">
+          <div class="video-card__label"><i class="fab fa-youtube"></i> This Week</div>
+          <h3 class="video-card__title">Padkos vir die week.</h3>
+          <p class="video-card__desc">Kom ons luister na die storie.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal">
+      <a href="https://www.youtube.com/@tussendorings2924" target="_blank" class="btn btn-secondary">
+        <i class="fab fa-youtube"></i> See All Videos on YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= ABOUT ======= -->
+<section class="about-section branded-section" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-img-stack reveal">
+        <img src="pictures/photo1.jpg" alt="Tussen Dorings community" class="about-img-main" />
+        <img src="pictures/photo2.jpg" alt="Hope in action" class="about-img-secondary" />
+        <div class="about-img-badge">Est.<br/>2020</div>
+      </div>
+      <div class="reveal">
+        <span class="section-label">About Us</span>
+        <div class="thorn-accent"></div>
+        <h2>Between the thorns, flowers grow</h2>
+        <p style="margin-top:1.2rem;">
+          Tussen Dorings — Afrikaans for <em>"Between Thorns"</em> — was born in the heart of Worcester, Western Cape. We believe that every scar is a story, and every story deserves to be heard.
+        </p>
+        <p style="margin-top:1rem;">
+          Through weekly stories, community events, and our podcast, we connect people across South Africa with the simple, powerful truth: you are not alone in your struggle. Hope is real. Help is near.
+        </p>
+        <div style="display:flex; gap:1.5rem; margin-top:2.5rem; flex-wrap:wrap;">
+          <a href="https://www.facebook.com/TussenDorings" target="_blank" class="btn btn-primary">
+            <i class="fab fa-facebook-f"></i> Follow on Facebook
+          </a>
+          <a href="https://www.youtube.com/@tussendorings2924" target="_blank" class="btn btn-secondary">
+            <i class="fab fa-youtube"></i> Watch on YouTube
+          </a>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= VALUES ======= -->
+<section class="values-section branded-section">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <span class="section-label">What We Stand For</span>
+      <h2>Our Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="value-card__icon">🌱</span>
+        <h4>Hope</h4>
+        <p>We plant seeds of hope in the hardest soil. No path is too broken to walk.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-card__icon">🤝</span>
+        <h4>Community</h4>
+        <p>Thorns are easier to bear together. We believe in the power of community and belonging.</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-card__icon">💬</span>
+        <h4>Authentic Stories</h4>
+        <p>Real voices. Real struggles. No sugarcoating — because honesty is what heals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= GALLERY ======= -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:2.5rem;" class="reveal">
+      <span class="section-label">Our Community</span>
+      <h2>Moments of Hope</h2>
+    </div>
+    <div class="gallery__grid reveal">
+      <div class="gallery__item item-1">
+        <img src="pictures/photo4.jpg" alt="Tussen Dorings community event" />
+      </div>
+      <div class="gallery__item">
+        <img src="pictures/photo3.jpg" alt="Worcester community gathering" style="height:200px;" />
+      </div>
+      <div class="gallery__item">
+        <img src="pictures/photo5.jpg" alt="Hope in action" style="height:200px;" />
+      </div>
+      <div class="gallery__item">
+        <img src="pictures/photo6.jpg" alt="Community stories" style="height:200px;" />
+      </div>
+      <div class="gallery__item">
+        <img src="pictures/photo7.jpg" alt="Motivational event" style="height:200px;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= PODCAST ======= -->
+<section class="podcast" id="podcast">
+  <div class="container">
+    <div class="podcast__inner">
+      <div class="reveal">
+        <div class="podcast__badge"><i class="fas fa-microphone"></i> Podcast</div>
+        <h2>Listen to Our Podcast</h2>
+        <p>Every episode is a raw, honest conversation about real life — the thorns, the tears, and the triumphs. Available on YouTube and wherever you listen to podcasts.</p>
+        <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="https://www.youtube.com/@tussendorings2924" target="_blank" class="btn btn-primary">
+            <i class="fab fa-youtube"></i> Watch on YouTube
+          </a>
+        </div>
+        <a href="https://www.youtube.com/@tussendorings2924" target="_blank" class="podcast__yt-link" style="margin-top:1.5rem;">
+          <i class="fab fa-youtube" style="font-size:1.3rem; color:var(--terracotta);"></i>
+          @tussendorings2924
+        </a>
+      </div>
+      <div class="podcast__embed reveal">
+        <!-- Replace VIDEO_ID with actual YouTube video ID from their channel -->
+        <iframe
+          width="100%"
+          height="260"
+          src="https://www.youtube.com/embed/ZpLVzW_1ThY"
+          title="Tussen Dorings Podcast"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="border-radius: var(--radius-sm);"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= UPCOMING EVENT TEASER ======= -->
+<section style="background:var(--cream); padding:5rem 0;">
+  <div class="container" style="text-align:center;">
+    <span class="section-label">Upcoming Event</span>
+    <h2 class="reveal">Don't Miss the <strong style="color:var(--terracotta);">Fun Run 2025</strong></h2>
+    <p class="lead reveal" style="max-width:540px; margin:1rem auto 2.5rem;">
+      Lace up your running shoes and run for hope. Every step supports our mission to spread stories of resilience across the Western Cape.
+    </p>
+    <a href="event.html" class="btn btn-primary btn-gold reveal">
+      <i class="fas fa-running"></i> View Event Details & Register
+    </a>
+  </div>
+</section>
+
+<!-- ======= CTA BAND ======= -->
+<section class="cta-band">
+  <div class="container">
+    <h2 class="reveal">Your story matters.</h2>
+    <p class="reveal">Share it with us and help someone else find their way through the thorns.</p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;" class="reveal">
+      <a href="https://www.facebook.com/TussenDorings" target="_blank" class="btn" style="background:var(--white); color:var(--terracotta); border-color:var(--white);">
+        <i class="fab fa-facebook-f"></i> Share on Facebook
+      </a>
+      <a href="https://www.youtube.com/@tussendorings2924" target="_blank" class="btn" style="background:transparent; color:var(--white); border-color:rgba(255,255,255,0.4);">
+        <i class="fab fa-youtube"></i> Watch Our Stories
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">Tussen Dorings</div>
+        <p class="footer__tagline">"We are here to give hope and to make you realise that we all have thorns in our paths."</p>
+        <div class="footer__social">
+          <a href="https://www.facebook.com/TussenDorings" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.youtube.com/@tussendorings2924" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="event.html">Events</a></li>
+          <li><a href="#podcast">Podcast</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="event.html#privacy">Privacy Policy</a></li>
+          <li><a href="event.html#refund">Refund Policy</a></li>
+          <li><a href="event.html#terms">Terms of Use</a></li>
+          <li><a href="event.html#popia">POPIA Compliance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact Us</h5>
+        <ul>
+          <li style="color:rgba(255,253,248,0.55); font-family:var(--font-ui); font-size:0.88rem; margin-bottom:0.5rem;">
+            <i class="fas fa-map-marker-alt" style="color:var(--terracotta); margin-right:0.4rem;"></i>
+            Worcester, Western Cape<br>South Africa
+          </li>
+          <li>
+            <a href="https://www.facebook.com/TussenDorings" target="_blank">
+              <i class="fab fa-facebook-f" style="color:var(--terracotta); margin-right:0.4rem;"></i>
+              Tussen Dorings (Facebook)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@tussendorings2924" target="_blank">
+              <i class="fab fa-youtube" style="color:var(--terracotta); margin-right:0.4rem;"></i>
+              @tussendorings2924
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Tussen Dorings NPO. All rights reserved. Worcester, Western Cape, South Africa.</span>
+      <span>
+        <a href="event.html#privacy">Privacy Policy</a> ·
+        <a href="event.html#refund">Refund Policy</a> ·
+        <a href="event.html#popia">POPIA</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('mainNav');
+    nav.style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(28,26,23,0.12)' : 'none';
+  });
+
+  // ── Mobile nav toggle
+  function toggleNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
