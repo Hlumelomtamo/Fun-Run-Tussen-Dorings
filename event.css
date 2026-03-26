@@ -110,7 +110,8 @@
   background: rgba(0,0,0,0.2);
   border-radius: var(--radius-sm);
   padding: 0.9rem 1.3rem;
-  min-width: 78px;
+  min-width: 0;
+  width: clamp(58px, 18vw, 78px);
   border: 1px solid rgba(255,255,255,0.15);
 }
 .countdown-unit__number {
