@@ -88,7 +88,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 .countdown-label-text {
@@ -97,11 +97,13 @@
   font-style: italic;
   color: rgba(255,253,248,0.9);
   text-align: center;
+  width: 100%;
 }
 .countdown-timer {
   display: flex;
-  gap: 1.2rem;
+  gap: clamp(0.3rem, 2vw, 1.2rem);
   align-items: center;
+  flex-wrap: nowrap; 
 }
 .countdown-unit {
   display: flex;
@@ -109,18 +111,18 @@
   align-items: center;
   background: rgba(0,0,0,0.2);
   border-radius: var(--radius-sm);
-  padding: 0.9rem 1.3rem;
-  min-width: 0;
+  padding: clamp(0.5rem, 2vw, 0.9rem) clamp(0.6rem, 2.5vw, 1.3rem); 
+  min-width: 0;                  
   width: clamp(58px, 18vw, 78px);
   border: 1px solid rgba(255,255,255,0.15);
 }
 .countdown-unit__number {
   font-family: var(--font-display);
-  font-size: 2.6rem;
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1;
-  min-width: 2ch;
+  width: 2ch; 
   text-align: center;
   transition: transform 0.3s ease;
 }
@@ -129,18 +131,20 @@
 }
 .countdown-unit__label {
   font-family: var(--font-ui);
-  font-size: 0.66rem;
+  font-size: clamp(0.52rem, 1.8vw, 0.66rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255,253,248,0.65);
   margin-top: 0.3rem;
+  white-space: nowrap; 
 }
 .countdown-separator {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 4vw, 2rem);
   font-weight: 900;
   color: rgba(255,253,248,0.4);
   animation: pulse 1s ease-in-out infinite;
+  flex-shrink: 0;
 }
 @keyframes pulse {
   0%, 100% { opacity: 0.4; }
@@ -148,8 +152,16 @@
 }
 .countdown-cta {
   text-align: center;
+  width: 100%;
 }
 .countdown-cta .btn { display: inline-flex; }
+
+@media (max-width: 480px) {
+  .countdown-section { padding: 1.8rem 0; }
+  .countdown-inner { gap: 1rem; }
+  .countdown-label-text { font-size: 1rem; margin-bottom: 0.3rem; }
+  .countdown-separator { font-size: 1rem; }
+}
 
 /* ── Why It Matters ── */
 .why-matters {
